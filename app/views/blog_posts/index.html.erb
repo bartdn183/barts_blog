@@ -1,35 +1,26 @@
-<p id="notice"><%= notice %></p>
+<%= render 'layouts/navbar' %>
+<div style="margin: 80px 2%;">
+  <div class="row" >
+   <div class="background: white; margin-top: 20px;">
+    <div class="col-md-4">
+      <%= link_to new_blog_post_path, remote: true, class: "btn btn-default" do %><span class="glyphicon glyphicon-plus"></span> New Blog Post <% end %>
+      <hr>
+      <div id="blog-post-form" style="display: none;"></div>
+    </div>
+    <div class="col-md-8">
+      <div id="blog-posts-title">
+        <h3 class="text-center"><span style=" padding: 8px;">All My Blog Posts</span></h3>
+        <hr >
+      </div>
+      <div id="blog-posts">
+        <%= render 'all_blog_posts' %>
+      </div>
+    </div>
+  </div>
+ </div>
+</div>
 
-<h1>Blog Posts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Entry</th>
-      <th>Category</th>
-      <th>Sub category</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @blog_posts.each do |blog_post| %>
-      <tr>
-        <td><%= blog_post.title %></td>
-        <td><%= blog_post.entry %></td>
-        <td><%= blog_post.category_id %></td>
-        <td><%= blog_post.sub_category_id %></td>
-        <td><%= blog_post.user_id %></td>
-        <td><%= link_to 'Show', blog_post %></td>
-        <td><%= link_to 'Edit', edit_blog_post_path(blog_post) %></td>
-        <td><%= link_to 'Destroy', blog_post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
 <br>
 
-<%= link_to 'New Blog Post', new_blog_post_path %>
+

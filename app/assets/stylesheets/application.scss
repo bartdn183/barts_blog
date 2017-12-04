@@ -23,3 +23,9 @@
 .intro-header { 
 	background-image: url(image-path("pic3.jpg"));
 }
+
+.basic-background {
+    background-image: url(image-path("pic4.jpg"));
+	background-position: cover;
+	background-repeat: no-repeat;
+}

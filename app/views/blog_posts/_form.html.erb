@@ -1,42 +1,28 @@
-<%= form_with(model: blog_post, local: true) do |form| %>
-  <% if blog_post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(blog_post.errors.count, "error") %> prohibited this blog_post from being saved:</h2>
+<%= form_with(model: @blog_post, remote: true) do |form| %>
 
-      <ul>
-      <% blog_post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :title %>
-    <%= form.text_field :title, id: :blog_post_title %>
+    <%= form.text_field :title, id: :blog_post_title, class: "form-control input-lg" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :entry %>
-    <%= form.text_area :entry, id: :blog_post_entry %>
+    <%= form.text_area :entry,rows: 10, id: :blog_post_entry, class: "form-control input-lg" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :category_id %>
-    <%= form.number_field :category_id, id: :blog_post_category_id %>
+    <%= form.select(:category_id, @categories.collect{|c| [c.name, c.id]}, {include_blank: "Select Category"}, id: :blog_post_category_id, class: "form-control input-lg") %>
   </div>
 
-  <div class="field">
+  <div class="hidden">
     <%= form.label :sub_category_id %>
-    <%= form.number_field :sub_category_id, id: :blog_post_sub_category_id %>
+    <%= form.number_field :sub_category_id, id: :blog_post_sub_category_id, class: "form-control input-lg", value: 1 %>
   </div>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id, id: :blog_post_user_id %>
-  </div>
-
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <br>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-default btn-block" %>
   </div>
 <% end %>
