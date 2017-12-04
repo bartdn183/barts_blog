@@ -3,14 +3,12 @@ class BlogPostsController < ApplicationController
   before_action :all_blog_posts, only: [:index, :create, :update, :destroy]
   before_action :all_categories, only: [:new, :edit]
   before_action :authenticate_user!
-  # GET /blog_posts
-  # GET /blog_posts.json
+  before_action :unauthorized_user!
+
   def index
     @blog_posts = BlogPost.all
   end
 
-  # GET /blog_posts/1
-  # GET /blog_posts/1.json
   def show
   end
 

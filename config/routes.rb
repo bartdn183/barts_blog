@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :categories
+  # resources :categories
   devise_for :users
   resources :blog_posts
   root 'home#index'
