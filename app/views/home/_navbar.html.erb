@@ -14,11 +14,13 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <%= link_to "My Profile", "http://www.bartdenef.us" %>
+                    <%= link_to "My Profile", "http://www.bartdenef.us", target: "_blank" %>
                 </li>
+                <% if (signed_in? && current_user.role == "admin") %>
                 <li>
-                    <a href="#">About</a>
+                    <%= link_to "Blog Posts Panel", blog_posts_path %>
                 </li>
+                <% end %>
                 <li>
                     <% if signed_in? && current_user %>
                         <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
