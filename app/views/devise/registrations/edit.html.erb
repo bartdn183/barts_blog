@@ -1,3 +1,5 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -27,8 +29,6 @@
     <%= f.label :tel do %>Phone Number:<% end %><br />
     <%= f.text_field :tel, class: "form-control"  %>
   </div>
-
-  <%= f.hidden_field :role, value: "guest" %>
 
   <div class="form-group">
     <%= f.label :locale do %>Language<% end %><br />
@@ -69,7 +69,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Update", class: "btn btn-default btn-lg btn-block" %>
+    <%= f.submit "Update", class: "btn btn-default btn-block" %>
   </div>
 <% end %>
 
@@ -78,3 +78,5 @@
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+</div>
+</div>
