@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  before_action :all_comments, only: [:create, :update, :destroy]
+  before_action :all_comments, only: [:update, :destroy]
   # GET /comments
   # GET /comments.json
   def index
@@ -46,6 +46,7 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
+    @blog_post = BlogPost.find(@comment.blog_post_id)
     @comment.destroy
     @comment = Comment.new
   end

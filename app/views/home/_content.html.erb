@@ -3,7 +3,7 @@
     <div class="row">
 
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-          <% @blog_posts.each do |blog_post| %>
+          <% @blog_posts.each_with_index do |blog_post, index| %>
             <div class="post-preview">
                 <%= link_to blog_post do %>
                     <h2 class="post-title">
@@ -15,10 +15,10 @@
                 <% end %>
                 <span class="post-meta">Posted by <b><%= blog_post.user.first_name %> <%= blog_post.user.last_name %></b> on <%= blog_post.created_at.strftime("%B %d, %Y at %I:%M %p") %>
                 </span><br>
-                <%= link_to "#collapseExample", "role" => "button", "data-toggle" => "collapse", "aria-expanded" => "false", "aria-controls" => "collapseExample" do %> <%= blog_post.comments.count %> comments <% end %>
-                        <div class="collapse" id="collapseExample">
+                <%= link_to "#collapseExample_#{index}", "role" => "button", "data-toggle" => "collapse", "aria-expanded" => "false", "aria-controls" => "collapseExample" do %> <%= pluralize(blog_post.comments.count, "comment") %>  <% end %>
+                        <div class="collapse" id="collapseExample_<%= index %>">
                           <div>
-                            <% blog_post.comments.each do |comment| %>
+                            <% blog_post.comments.order(created_at: :desc).each do |comment| %>
                             <h3 class="post-subtitle" style="font-weight: 300;">
                             <%= comment.entry %>
                             </h3>
