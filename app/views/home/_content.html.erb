@@ -15,9 +15,21 @@
                 <% end %>
                 <span class="post-meta">Posted by <b><%= blog_post.user.first_name %> <%= blog_post.user.last_name %></b> on <%= blog_post.created_at.strftime("%B %d, %Y at %I:%M %p") %>
                 </span><br>
-                <span class="post-meta"><i>2 comments</i></span>
+                <%= link_to "#collapseExample", "role" => "button", "data-toggle" => "collapse", "aria-expanded" => "false", "aria-controls" => "collapseExample" do %> <%= blog_post.comments.count %> comments <% end %>
+                        <div class="collapse" id="collapseExample">
+                          <div>
+                            <% blog_post.comments.each do |comment| %>
+                            <h3 class="post-subtitle" style="font-weight: 300;">
+                            <%= comment.entry %>
+                            </h3>
+                            <span style="color: #777777;font-size: 18px;
+  font-style: italic; margin-top: 0;">Commented by <b><%= comment.user.first_name %> <%= comment.user.last_name %></b> on <%= comment.created_at.strftime("%B %d, %Y at %I:%M %p") %></span>
+                            <hr>
+                            <% end %>
+                          </div>
+                        </div>
+               <!--  <span class="post-meta"><i>2 comments</i></span> -->
             </div>
-            <hr>
           <% end %>
             <!-- Pager -->
             <ul class="pager">
