@@ -5,15 +5,17 @@
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           <% @blog_posts.each do |blog_post| %>
             <div class="post-preview">
-                <a href="#">
+                <%= link_to blog_post do %>
                     <h2 class="post-title">
                        <%= blog_post.title %>
                     </h2>
                     <h3 class="post-subtitle">
-                        <%= blog_post.entry %>
+                        <%= blog_post.entry.html_safe %>
                     </h3>
-                </a>
-                <p class="post-meta">Posted by <b><%= blog_post.user.first_name %> <%= blog_post.user.last_name %></b> on <%= blog_post.created_at.strftime("%B %d, %Y") %></p>
+                <% end %>
+                <span class="post-meta">Posted by <b><%= blog_post.user.first_name %> <%= blog_post.user.last_name %></b> on <%= blog_post.created_at.strftime("%B %d, %Y at %I:%M %p") %>
+                </span><br>
+                <span class="post-meta"><i>2 comments</i></span>
             </div>
             <hr>
           <% end %>

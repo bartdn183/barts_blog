@@ -2,6 +2,7 @@ class BlogPostsController < ApplicationController
   before_action :set_blog_post, only: [:show, :edit, :update, :destroy]
   before_action :all_blog_posts, only: [:index, :create, :update, :destroy]
   before_action :all_categories, only: [:new, :edit]
+  before_action :all_comments, only: [:show]
   before_action :authenticate_user!
   before_action :unauthorized_user!
 
@@ -10,6 +11,8 @@ class BlogPostsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    # @comments = Comment.where(blog_post_id: @comment.blog_post_id)
   end
 
   # GET /blog_posts/new
@@ -40,6 +43,10 @@ class BlogPostsController < ApplicationController
   end
 
   private
+
+    def all_comments
+      @comments = Comment.where(blog_post_id: @blog_post.id).order(created_at: :desc)
+    end
 
     def all_blog_posts
       @blog_posts = BlogPost.all

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :comments, only: [:create, :destroy]
   # resources :categories
   devise_for :users
   resources :blog_posts

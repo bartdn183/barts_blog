@@ -1,0 +1,25 @@
+<% @comments.order(created_at: :desc).each do |comment| %>
+
+    <div class="post-preview">
+      <div class="row">
+      	<div class="col-md-11">
+	        <h4 class="post-subtitle">
+	            <%= comment.entry.html_safe %>
+	        </h4>
+    	</div>
+    	<div class="col-md-1">
+    		<% if comment.user_id == current_user.id %>
+    			<%= link_to "x", comment_path(comment, @blog_post), remote: true, method: :delete,data: {confirm: "Are you sure?"} %>
+    		<% end %>
+    	</div>
+      </div>
+    <p class="post-meta">Posted by <b><%= comment.user.first_name %> <%= comment.user.last_name %></b> on <%= comment.created_at.strftime("%B %d, %Y at %I:%M %p") %>
+    </p>
+  </div>
+
+test
+
+<hr>
+<% end %>
+
+

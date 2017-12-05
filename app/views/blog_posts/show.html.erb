@@ -1,29 +1,30 @@
-<p id="notice"><%= notice %></p>
+<%= render 'home/navbar' %>
+<div class="container">
+    <div class="row">
 
-<p>
-  <strong>Title:</strong>
-  <%= @blog_post.title %>
-</p>
-
-<p>
-  <strong>Entry:</strong>
-  <%= @blog_post.entry %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @blog_post.category_id %>
-</p>
-
-<p>
-  <strong>Sub category:</strong>
-  <%= @blog_post.sub_category_id %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @blog_post.user_id %>
-</p>
-
-<%= link_to 'Edit', edit_blog_post_path(@blog_post) %> |
-<%= link_to 'Back', blog_posts_path %>
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-preview">
+                <a href="#">
+                    <h2 class="post-title">
+                       <%= @blog_post.title %>
+                    </h2>
+                    <h3 class="post-subtitle">
+                        <%= @blog_post.entry.html_safe %>
+                    </h3>
+                </a>
+                <p class="post-meta">Posted by <b><%= @blog_post.user.first_name %> <%= @blog_post.user.last_name %></b> on <%= @blog_post.created_at.strftime("%B %d, %Y") %>
+                </p>
+            </div>
+            <hr>
+            <div id="comment-form">
+            <%= render 'comments/form' %>
+            </div>
+            <hr>
+            <div class="post-preview">
+                <div id="comments">
+                    <%= render 'comments/comments' %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

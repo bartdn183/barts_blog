@@ -7,23 +7,20 @@
                 <span class="sr-only">Toggle navigation</span>
                 Menu <i class="fa fa-bars"></i>
             </button>
-            <%= link_to "Bart's Blog", root_url, class: "navbar-brand" %>
+            <%= link_to "Bart's Blog", root_url, class: "navbar-brand", style: "color: white;" %>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <%= link_to "My Profile", "http://www.bartdenef.us", target: "_blank" %>
-                </li>
-                <li>
-                    <a href="#">About</a>
+                    <%= link_to "My Profile", "http://www.bartdenef.us", target: "_blank", style: "color: white;" %>
                 </li>
                 <li>
                     <% if signed_in? && current_user %>
-                        <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+                        <%= link_to "Sign Out", destroy_user_session_path, method: :delete, style: "color: white;" %>
                     <% else %>
-                        <%= link_to "Sign Up | Sign In", new_user_session_path %>
+                        <%= link_to "Sign Up | Sign In", new_user_session_path, style: "color: white;" %>
                     <% end %>
                 </li>
             </ul>

@@ -2,8 +2,7 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Title</th>
-        <th>Entry</th>
+        <th>Title & Entry</th>
         <th>Category</th>
         <th>Author</th>
         <th colspan="2"></th>
@@ -13,8 +12,13 @@
     <tbody>
       <% @blog_posts.each do |blog_post| %>
         <tr>
-          <td><%= blog_post.title %></td>
-          <td><%= blog_post.entry[0..50] %></td>
+          <td><b><i><%= blog_post.title %></i></b><br>
+              <% if blog_post.entry.size <= 50 %> 
+                  <%= blog_post.entry %>
+              <% else %>
+                  <%= blog_post.entry[0..50] %> ...
+              <% end %>
+          </td>
           <td><%= blog_post.category.name %></td>
           <td><%= blog_post.user.first_name %> <%= blog_post.user.last_name %></td>
           <td><%= link_to 'Edit', edit_blog_post_path(blog_post),remote: true, class: "btn btn-warning" %></td>
