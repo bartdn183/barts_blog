@@ -15,7 +15,11 @@
                 <% end %>
                 <span class="post-meta">Posted by <b><%= blog_post.user.first_name %> <%= blog_post.user.last_name %></b> on <%= blog_post.created_at.strftime("%B %d, %Y at %I:%M %p") %>
                 </span><br>
+                <% if blog_post.comments.count == 0 %>
+                    0 comments
+                <% else %>
                 <%= link_to "#collapseExample_#{index}", "role" => "button", "data-toggle" => "collapse", "aria-expanded" => "false", "aria-controls" => "collapseExample" do %> <%= pluralize(blog_post.comments.count, "comment") %>  <% end %>
+                <% end %>
                         <div class="collapse" id="collapseExample_<%= index %>">
                           <div>
                             <% blog_post.comments.order(created_at: :desc).each do |comment| %>
